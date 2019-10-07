@@ -37,7 +37,7 @@ npx @zrpaplicacoes/ssm-parameter-validation execute
 Docker only supports configuration through [environment variables](#through-environment-variables), so run:
 
 ```
-docker run -v /${PWD}/docker-compose.yml:/home/node/app/docker-compose.yml -e AWS_REGION='<<region>>' -e AWS_SECRET_ACCESS_KEY='<<config>>' -e AWS_ACCESS_KEY_ID='<<config>>' -e PARAMETERS_PATH='<<config>>' -e IGNORE_PARAMETERS='<<config>> ssm-parameter-validation'
+docker run -v /${PWD}/docker-compose.yml:/home/node/app/docker-compose.yml -e AWS_REGION='<<region>>' -e AWS_SECRET_ACCESS_KEY='<<config>>' -e AWS_ACCESS_KEY_ID='<<config>>' -e PARAMETERS_PATH='<<config>>' -e IGNORE_PARAMETERS='<<config>> zrpaplicacoes/ssm-parameter-validation'
 ```
 
 ## Configuration
@@ -67,3 +67,25 @@ AWS_SECRET_ACCESS_KEY='your secret key (DO NOT COMMIT THAT)'
 AWS_ACCESS_KEY_ID='your access key'
 IGNORE_PARAMETERS='parameters that you want to ignore, a string with comma separeted parameters'
 PARAMETERS_PATH='where should this package search for parameters in ssm'
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center">
+        <a href="https://github.com/clsechi"><img src="https://avatars3.githubusercontent.com/u/22090648?s=460&v=4" width="100px;" alt="Carlos Sechi"/><br /><sub><b>Carlos Sechi</b></sub></a><br /> <a href="https://avatars3.githubusercontent.com/u/22090648?s=460&v=4" title="Code">💻</a><a href="https://github.com/clsechi/ssm-parameter-validation/commits?author=clsechi" title="Documentation">📖</a> <a href="#review-kentcdodds" title="Reviewed Pull Requests">👀</a> <a href="#maintenance-jakebolam" title="Maintenance">🚧<a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/RafaelTCostella"><img src="https://avatars1.githubusercontent.com/u/6992739?s=460&v=4" width="100px;" alt="Nikolas V. Serafini"/><br /><sub><b>Rafael Costella</b></sub></a><br /> <a href="https://github.com/RafaelTCostella" title="Code">💻</a> <a href="https://github.com/clsechi/ssm-parameter-validation/commits?author=RafaelTCostella" title="Documentation">📖</a> <a href="#review-kentcdodds" title="Reviewed Pull Requests">👀</a> <a href="#maintenance-jakebolam" title="Maintenance">🚧<a>
+    </td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://allcontributors.org) specification.
