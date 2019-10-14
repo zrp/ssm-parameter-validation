@@ -51,7 +51,7 @@ const logArray = (data, message, color) => {
 const mapIgnoredParameters = (config) => {
   let ignoredParameters = [];
   if (config.ignoreParameters) {
-    ignoredParameters = config.ignoreParameters.split(', ');
+    ignoredParameters = config.ignoreParameters.split(/,\s|\s,\s|\s,|,/);
   }
   logArray(ignoredParameters, 'Ignored parameters:', 'cyan');
   return ignoredParameters;
