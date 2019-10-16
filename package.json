@@ -1,6 +1,6 @@
 {
-  "name": "ssm-parameter-validation",
-  "version": "1.0.0",
+  "name": "@zrpaplicacoes/ssm-parameter-validation",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -20,6 +20,9 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "bin": {
+    "execute": "./cli.js"
+  },
+  "author": "Carlos Sechi",
   "license": "ISC"
 }

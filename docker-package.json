@@ -1,0 +1,17 @@
+{
+  "name": "docker-app",
+  "version": "1.0.0",
+  "description": "A sample docker package.json file to install ssm-validation",
+  "main": "./index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@zrpaplicacoes/ssm-parameter-validation": "0.0.3"
+  },
+  "scripts": {
+  },
+  "bin": {
+  },
+  "author": "Carlos Sechi",
+  "license": "ISC"
+}

@@ -1,4 +1,3 @@
-require('dotenv').config();
 const yaml = require('js-yaml');
 const fs = require('fs');
 const awsParamStore = require('aws-param-store');
@@ -6,8 +5,23 @@ const chalk = require('chalk');
 
 const { log } = console;
 
-const getStoreParameters = async (path) => {
-  const instance = awsParamStore.parameterQuery({ region: 'us-east-1' });
+const fillWithEnvironmentVariables = (config) => ({
+  aws: {
+    region: process.env.AWS_REGION,
+    awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  },
+  ignoreParameters: process.env.IGNORE_PARAMETERS,
+  parametersPath: process.env.PARAMETERS_PATH,
+  ...config,
+});
+
+const getStoreParameters = async (path, config) => {
+  const instance = awsParamStore.parameterQuery({
+    region: config.aws.region,
+    awsSecretAccessKey: config.aws.awsSecretAccessKey,
+    awsAccessKeyId: config.aws.awsAccessKeyId,
+  });
   /* disable decription of secure strings, we dont use the data of the paramenters */
   instance.decryption(false);
   const params = await instance.path(path).execute();
@@ -34,24 +48,27 @@ const logArray = (data, message, color) => {
   log('\n');
 };
 
-const mapIgnoredParameters = () => {
+const mapIgnoredParameters = (config) => {
   let ignoredParameters = [];
-  if (process.env.IGNORE_PARAMETERS) {
-    ignoredParameters = process.env.IGNORE_PARAMETERS.split(', ');
+  if (config.ignoreParameters) {
+    ignoredParameters = config.ignoreParameters.split(/,\s|\s,\s|\s,|,/);
   }
   logArray(ignoredParameters, 'Ignored parameters:', 'cyan');
   return ignoredParameters;
 };
 
-(async function init() {
+
+async function ssmValidation(config) {
   try {
     log(`Start execution at ${new Date()}\n`);
 
-    const ignoredParameters = mapIgnoredParameters();
-    const paramentersPath = process.env.PARAMETERS_PATH || '';
+    config = fillWithEnvironmentVariables(config);
+
+    const ignoredParameters = mapIgnoredParameters(config);
+    const paramentersPath = config.parametersPath || '';
 
     const composeParameters = await getComposeParamaters(ignoredParameters);
-    const storeParameters = await getStoreParameters(paramentersPath);
+    const storeParameters = await getStoreParameters(paramentersPath, config);
     const result = validateParameters(composeParameters, storeParameters);
 
     if (result.length === 0) {
@@ -67,4 +84,8 @@ const mapIgnoredParameters = () => {
     log(chalk.bold.red('Something happened'), err);
     process.exit(1);
   }
-}());
+}
+
+module.exports = {
+  ssmValidation,
+}
