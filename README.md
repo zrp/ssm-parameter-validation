@@ -37,7 +37,7 @@ npx @zrpaplicacoes/ssm-parameter-validation execute
 Docker only supports configuration through [environment variables](#through-environment-variables), so run:
 
 ```
-docker run -v /${PWD}/docker-compose.yml:/home/node/app/docker-compose.yml -e AWS_REGION='<<region>>' -e AWS_SECRET_ACCESS_KEY='<<config>>' -e AWS_ACCESS_KEY_ID='<<config>>' -e PARAMETERS_PATH='<<config>>' -e IGNORE_PARAMETERS='<<config>> zrpaplicacoes/ssm-parameter-validation'
+docker run -v /${PWD}/docker-compose.yml:/home/node/app/docker-compose.yml -e AWS_REGION='<<region>>' -e AWS_SECRET_ACCESS_KEY='<<config>>' -e AWS_ACCESS_KEY_ID='<<config>>' -e PARAMETERS_PATH='<<config>>' -e IGNORE_PARAMETERS='<<config>>' zrpaplicacoes/ssm-parameter-validation
 ```
 
 ## Configuration
